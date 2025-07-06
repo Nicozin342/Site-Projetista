@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambientes Planejados | Seu Espaço, Sua Identidade</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --madeira: #bfa58a;
+            --escuro: #2d2d2d;
+            --claro: #f9f7f3;
+            --destaque: #8d735c;
+            --transicao-suave: all 0.3s ease;
+        }
+
+        /* Reset Básico e Fontes */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--claro);
+            color: var(--escuro);
+            scroll-behavior: smooth;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: white;
+            padding: 15px 40px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: var(--transicao-suave);
+        }
+
+        header.shrink {
+            padding: 8px 30px;
+            background-color: #ffffffcc;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--destaque);
+            transition: var(--transicao-suave);
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: var(--escuro);
+            font-weight: 500;
+            position: relative;
+            transition: var(--transicao-suave);
+            padding-bottom: 5px;
+            /* Espaço para o underline */
+        }
+
+        ul li a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--destaque);
+            transition: width 0.3s ease;
+        }
+
+        ul li a:hover {
+            color: var(--destaque);
+        }
+
+        ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Banner */
+        .banner {
+            background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            flex-direction: column;
+            position: relative;
+            animation: fadeIn 1.2s ease-in;
+            padding: 0 20px;
+            /* Adicionado para mobile */
+        }
+
+        .banner::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .banner h1,
+        .banner p,
+        .banner .cta {
+            position: relative;
+            z-index: 2;
+        }
+
+        .banner h1 {
+            font-size: 3.8rem;
+            max-width: 800px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .banner p.slogan {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1.2s ease-in-out;
+        }
+
+        .cta {
+            background-color: white;
+            color: var(--escuro);
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+            max-width: 550px;
+            text-align: left;
+            animation: fadeInUp 1.5s ease-in-out;
+            margin-top: 20px;
+        }
+
+        .cta h3 {
+            margin-bottom: 10px;
+            color: var(--destaque);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .cta p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .cta a {
+            display: inline-block;
+            background-color: var(--destaque);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            transition: var(--transicao-suave);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .cta a:hover {
+            background-color: #745c45;
+            transform: translateY(-2px);
+        }
+
+        /* Animações Keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(1.02);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Seções Gerais */
+        section {
+            padding: 100px 20px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            /* Inicialmente oculto para animação */
+            transform: translateY(30px);
+            /* Inicialmente deslocado para animação */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            /* Transição para a animação */
+        }
+
+        section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            text-align: center;
+            color: var(--destaque);
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--destaque);
+            border-radius: 2px;
+        }
+
+        /* Seções de Ambientes e Produtos */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .grid-item {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: var(--transicao-suave);
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            opacity: 0;
+            /* Para animação individual */
+            transform: translateY(20px);
+            /* Para animação individual */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            cursor: pointer; /* Indica que é clicável */
+        }
+
+        .grid-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 250px;
+            /* Altura fixa para uniformidade */
+            object-fit: cover;
+            /* Garante que a imagem cubra o espaço */
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .grid-item-content {
+            padding: 25px;
+        }
+
+        .grid-item h3 {
+            font-size: 1.5rem;
+            color: var(--destaque);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .grid-item p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--escuro);
+        }
+
+        /* Seção Quem Somos */
+        #sobre p {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Seção Contato */
+        #contato .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* Centraliza os itens de contato */
+            gap: 30px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        #contato .contact-item {
+            flex: 1 1 300px;
+            /* Ajustado para 2 itens, mínimo 300px */
+            max-width: 350px;
+            /* Limite um pouco maior para acomodar 2 itens */
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        #contato .contact-item h4 {
+            color: var(--destaque);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        #contato .contact-item p,
+        #contato .contact-item a {
+            color: var(--escuro);
+            text-decoration: none;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        #contato .contact-item a:hover {
+            color: var(--destaque);
+            text-decoration: underline;
+        }
+
+        #contato .contact-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #contato .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--escuro);
+        }
+
+        #contato .contact-form input[type="text"],
+        #contato .contact-form input[type="email"],
+        #contato .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            color: var(--escuro);
+            transition: border-color 0.3s ease;
+        }
+
+        #contato .contact-form input[type="text"]:focus,
+        #contato .contact-form input[type="email"]:focus,
+        #contato .contact-form textarea:focus {
+            border-color: var(--destaque);
+            outline: none;
+        }
+
+        #contato .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        #contato .contact-form button {
+            background-color: var(--destaque);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: var(--transicao-suave);
+            display: block;
+            width: fit-content;
+            /* Ajusta a largura ao conteúdo */
+            margin: 0 auto;
+            /* Centraliza o botão */
+        }
+
+        #contato .contact-form button:hover {
+            background-color: #745c45;
+            transform: translateY(-2px);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--escuro);
+            color: white;
+            text-align: center;
+            padding: 40px 10px;
+            font-size: 0.9rem;
+            margin-top: 50px;
+        }
+
+        /* Botão WhatsApp Flutuante */
+        .whatsapp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            border-radius: 50%;
+            width: 65px;
+            height: 65px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp img {
+            width: 38px;
+        }
+
+        /* Lightbox (Expansão de Imagem) */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-overlay.active .lightbox-content img {
+            transform: scale(1);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 20px;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            ul li a {
+                font-size: 0.9rem;
+            }
+
+            .banner h1 {
+                font-size: 2.8rem;
+            }
+
+            .banner p.slogan {
+                font-size: 1.1rem;
+            }
+
+            .cta {
+                padding: 25px;
+                max-width: 90%;
+            }
+
+            .cta h3 {
+                font-size: 1.5rem;
+            }
+
+            .cta p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 80px 20px 40px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 40px;
+            }
+
+            .grid-item h3 {
+                font-size: 1.3rem;
+            }
+
+            .grid-item p {
+                font-size: 0.9rem;
+            }
+
+            #contato .contact-form {
+                padding: 30px 20px;
+            }
+
+            .whatsapp {
+                width: 55px;
+                height: 55px;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .whatsapp img {
+                width: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 10px;
+            }
+
+            ul li a {
+                padding: 5px 8px;
+            }
+
+            .banner h1 {
+                font-size: 2rem;
+            }
+
+            .banner p.slogan {
+                font-size: 0.9rem;
+            }
+
+            .cta h3 {
+                font-size: 1.3rem;
+            }
+
+            .cta a {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .grid-container {
+                gap: 20px;
+            }
+
+            .grid-item img {
+                height: 200px;
+            }
+
+            #contato .contact-item {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+    <script>
+        // Efeito de encolher o cabeçalho ao rolar
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            header.classList.toggle('shrink', window.scrollY > 100);
+        });
+
+        // Animação de revelar seções ao rolar (Scroll Reveal)
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const gridItems = document.querySelectorAll('.grid-item');
+
+            const options = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.2 // A seção será visível quando 20% dela estiver no viewport
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Para de observar depois de animar
+                    }
+                });
+            }, options);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            const itemOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.3
+            };
+
+            const itemObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Atraso para animação sequencial dos itens
+                        setTimeout(() => {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }, index * 150); // Atraso de 150ms por item
+                    }
+                });
+            }, itemOptions);
+
+            gridItems.forEach(item => {
+                itemObserver.observe(item);
+            });
+
+
+            // Lightbox functionality
+            const lightboxOverlay = document.createElement('div');
+            lightboxOverlay.classList.add('lightbox-overlay');
+            document.body.appendChild(lightboxOverlay);
+
+            const lightboxContent = document.createElement('div');
+            lightboxContent.classList.add('lightbox-content');
+            lightboxOverlay.appendChild(lightboxContent);
+
+            const lightboxImg = document.createElement('img');
+            lightboxContent.appendChild(lightboxImg);
+
+            // Select all images inside grid-item
+            const imagesToExpand = document.querySelectorAll('.grid-item img');
+
+            imagesToExpand.forEach(image => {
+                image.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Prevent click from bubbling to grid-item
+                    const src = image.getAttribute('data-large-src') || image.src;
+                    lightboxImg.src = src;
+                    lightboxOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+                });
+            });
+
+            // Close lightbox when clicking on the overlay or the image itself
+            lightboxOverlay.addEventListener('click', () => {
+                lightboxOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+
+            lightboxImg.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent img click from bubbling to overlay
+                lightboxOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">Leidy Planejados</div>
+            <ul>
+                <li><a href="#ambientes">Ambientes</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#sobre">Quem Somos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="banner">
+        <h1>Seu espaço, sua identidade</h1>
+        <p class="slogan">Design funcional e elegância que transformam cada ambiente.</p>
+        <div class="cta">
+            <h3>Solicite um orçamento personalizado</h3>
+            <p>Fale com nossa equipe de especialistas e comece a projetar os móveis dos seus sonhos com materiais de alta qualidade e um atendimento exclusivo.</p>
+            <a href="https://wa.me/5511959779558" target="_blank">Falar com Consultor no WhatsApp</a>
+        </div>
+    </section>
+
+    <section id="ambientes">
+        <h2 class="section-title">Nossos Ambientes</h2>
+        <div class="grid-container">
+            <div class="grid-item">
+                <img src="Imagem/img 3.jpg" alt="Cozinha moderna">
+                <div class="grid-item-content">
+                    <h3>Cozinhas Funcionais</h3>
+                    <p>Projetamos cozinhas que unem beleza, ergonomia e praticidade, otimizando seu espaço e seu dia a
+                        dia.</p>
+                </div>
+            </div>
+            <div class="grid-item">
+               <img src="Imagem/img 2.jpg" alt="Sala de Estar">
+                <div class="grid-item-content">
+                    <h3>Salas de Estar Aconchegantes</h3>
+                    <p>Criamos salas perfeitas para relaxar e receber, com soluções inteligentes para TV, estantes e
+                        painéis.</p>
+                </div>
+            </div>
+            <div class="grid-item">
+                <img src="Imagem/img 5.jpg" alt="Dormitórios">
+                <div class="grid-item-content">
+                    <h3>Dormitórios Personalizados</h3>
+                    <p>Desenvolvemos quartos que são verdadeiros refúgios, com guarda-roupas, escrivaninhas e
+                        cabeceiras sob medida.</p>
+                </div>
+            </div>
+            <div class="grid-item">
+                <img src="https://images.unsplash.com/photo-1594026367507-63e8006e2a22?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    data-large-src="https://images.unsplash.com/photo-1594026367507-63e8006e2a22?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Home Office Planejado">
+                <div class="grid-item-content">
+                    <h3>Home Offices Otimizados</h3>
+                    <p>Tenha um espaço de trabalho produtivo e organizado, com móveis adaptados às suas necessidades e
+                        estilo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="produtos">
+        <h2 class="section-title">Nossos Produtos</h2>
+        <div class="grid-container">
+            <div class="grid-item">
+               <img src="Imagem/img 6.jpg" alt="cozinhas">
+                <div class="grid-item-content">
+                    <h3>Armários Modulares</h3>
+                    <p>Variedade de armários com design moderno, versatilidade e acabamentos de alta durabilidade.</p>
+                </div>
+            </div>
+            <div class="grid-item">
+                <img src="https://images.unsplash.com/photo-1600585152933-381fe2446582?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    data-large-src="https://images.unsplash.com/photo-1600585152933-381fe2446582?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Mesa de Centro em Madeira">
+                <div class="grid-item-content">
+                    <h3>Mesas e Bancadas</h3>
+                    <p>Peças únicas de mesas de centro, laterais e bancadas, com design que valoriza seu ambiente.</p>
+                </div>
+            </div>
+            <div class="grid-item">
+                <img src="https://images.unsplash.com/photo-1620050040410-3c8ef76ae9c4?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    data-large-src="https://images.unsplash.com/photo-1620050040410-3c8ef76ae9c4?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Estante para Sala">
+                <div class="grid-item-content">
+                    <h3>Estantes e Painéis</h3>
+                    <p>Soluções inteligentes para organização e decoração, com estantes e painéis que se adaptam ao seu
+                        espaço.</p>
+                </div>
+            </div>
+            <div class="grid-item">
+                <img src="https://images.unsplash.com/photo-1563841932221-fe23a9a463a5?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    data-large-src="https://images.unsplash.com/photo-1563841932221-fe23a9a463a5?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Cama com Cabeceira Estofada">
+                <div class="grid-item-content">
+                    <h3>Camas e Cabeceiras</h3>
+                    <p>Conforto e estilo com camas e cabeceiras sob medida, que complementam a decoração do seu quarto.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre">
+        <h2 class="section-title">Quem Somos</h2>
+        <p>
+            Na **Ambientes Planejados**, somos apaixonados por transformar sonhos em realidade. Com anos de experiência no
+            mercado, nossa equipe é especializada em criar **móveis sob medida** que aliam **sofisticação, conforto e
+                funcionalidade** para cada canto da sua casa ou escritório.
+        </p>
+        <p>
+            Nossa missão é ir além da simples fabricação de móveis: buscamos entender o seu estilo de vida, suas
+            necessidades e seus desejos para desenvolver projetos verdadeiramente personalizados. Utilizamos apenas
+            **materiais de alta qualidade** e tecnologia de ponta, garantindo durabilidade e acabamento impecável. Venha
+            conhecer a diferença de ter um ambiente pensado exclusivamente para você!
+        </p>
+    </section>
+
+    <section id="contato">
+        <h2 class="section-title">Fale Conosco</h2>
+        <p style="text-align:center; margin-bottom: 40px;">Entre em contato conosco para solicitar um orçamento ou tirar
+            suas dúvidas. Estamos prontos para te atender!</p>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <h4>WhatsApp</h4>
+                <p>O jeito mais rápido de falar com a gente!</p>
+                <p><a href="https://wa.me/5511959779558" target="_blank">(11) 9597-79558</a></p>
+            </div>
+            <div class="contact-item">
+                <h4>E-mail</h4>
+                <p>Envie sua mensagem e responderemos em breve.</p>
+                <p><a href="MILTON.CANAA.2016@gmail.com">MILTON.CANAA.2016@gmail.com</a></p>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h3>Envie-nos uma Mensagem</h3>
+            <form action="#" method="POST">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">Seu E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="mensagem">Sua Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" required></textarea>
+
+                <button type="submit">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Ambientes Planejados. Todos os direitos reservados.</p>
+    </footer>
+
+    <a class="whatsapp" href="https://wa.me/5511959779558" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp">
+    </a>
+</body>
+
+</html>
